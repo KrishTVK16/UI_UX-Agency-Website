@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users - Lumina Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        /* Reusing Dashboard Specific Styles */
+        body {
+            background-color: var(--color-bg-subtle);
+        }
+
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: var(--color-bg);
+            border-right: 1px solid var(--color-border);
+            padding: 20px;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .main-content {
+            margin-left: 260px;
+            padding: 30px;
+            min-height: 100vh;
+            transition: margin-left 0.3s ease;
+        }
+
+        .nav-pills .nav-link {
+            color: var(--color-text-muted);
+            font-weight: 500;
+            margin-bottom: 5px;
+            padding: 10px 16px;
+            border-radius: 8px;
+        }
+
+        .nav-pills .nav-link:hover {
+            background-color: var(--color-bg-subtle);
+            color: var(--color-primary);
+        }
+
+        .nav-pills .nav-link.active {
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        .metric-card {
+            background: var(--color-bg);
+            padding: 24px;
+            border-radius: 16px;
+            border: 1px solid var(--color-border);
+            height: 100%;
+        }
+
+        @media (max-width: 991.98px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.show {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Mobile Header -->
+    <nav class="navbar navbar-light bg-light d-lg-none fixed-top shadow-sm">
+        <div class="container-fluid">
+            <button class="btn border-0" id="sidebar-toggle"><i class="bi bi-list fs-3"></i></button>
+            <span class="navbar-brand mb-0 h1 fw-bold">Lumina</span>
+            <div class="d-flex align-items-center gap-2">
+                <button class="theme-toggle-btn" id="theme-toggle"><i class="bi bi-moon-stars"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidebar d-flex flex-column" id="sidebar">
+        <a href="../index.html"
+            class="d-flex align-items-center mb-4 mb-md-0 me-md-auto text-decoration-none text-body px-2">
+            <i class="bi bi-hexagon-fill text-primary fs-3 me-2"></i>
+            <span class="fs-4 fw-bold">Lumina</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li><a href="index.html" class="nav-link"><i class="bi bi-grid me-2"></i> Overview</a></li>
+            <li><a href="orders.html" class="nav-link"><i class="bi bi-cart me-2"></i> Orders</a></li>
+            <li><a href="users.html" class="nav-link active"><i class="bi bi-people me-2"></i> Users</a></li>
+            <li><a href="messages.html" class="nav-link"><i class="bi bi-chat-dots me-2"></i> Messages</a></li>
+        </ul>
+        <hr>
+        <div class="dropdown">
+            <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle text-body px-2"
+                data-bs-toggle="dropdown">
+                <img src="https://placehold.co/32x32" alt="" width="32" height="32" class="rounded-circle me-2">
+                <strong>Admin</strong>
+            </a>
+            <ul class="dropdown-menu text-small shadow">
+                <li><a class="dropdown-item" href="../login.html">Sign out</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="d-none d-lg-flex justify-content-between align-items-center mb-4">
+            <h4 class="fw-bold m-0">User Management</h4>
+            <div class="d-flex align-items-center gap-3">
+                <button class="theme-toggle-btn" id="theme-toggle-desktop"><i class="bi bi-moon-stars"></i></button>
+                <button class="btn btn-primary-custom btn-sm"><i class="bi bi-plus-lg"></i> Add User</button>
+            </div>
+        </header>
+
+        <div class="metric-card">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>User</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th>Joined</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center gap-2">
+                                    <img src="https://placehold.co/32x32" class="rounded-circle" alt="">
+                                    <div>
+                                        <div class="fw-bold">John Doe</div>
+                                        <div class="small text-muted">john@example.com</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Admin</td>
+                            <td><span class="badge bg-success bg-opacity-10 text-success">Active</span></td>
+                            <td>Jan 21, 2026</td>
+                            <td><button class="btn btn-sm btn-light"><i class="bi bi-three-dots"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center gap-2">
+                                    <img src="https://placehold.co/32x32" class="rounded-circle" alt="">
+                                    <div>
+                                        <div class="fw-bold">Jane Smith</div>
+                                        <div class="small text-muted">jane@example.com</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Editor</td>
+                            <td><span class="badge bg-warning bg-opacity-10 text-warning">Pending</span></td>
+                            <td>Jan 20, 2026</td>
+                            <td><button class="btn btn-sm btn-light"><i class="bi bi-three-dots"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center gap-2">
+                                    <img src="https://placehold.co/32x32" class="rounded-circle" alt="">
+                                    <div>
+                                        <div class="fw-bold">Robert Brown</div>
+                                        <div class="small text-muted">robert@example.com</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Subscriber</td>
+                            <td><span class="badge bg-secondary bg-opacity-10 text-secondary">Inactive</span></td>
+                            <td>Dec 15, 2025</td>
+                            <td><button class="btn btn-sm btn-light"><i class="bi bi-three-dots"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Pagination -->
+            <nav class="mt-4">
+                <ul class="pagination justify-content-center mb-0">
+                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script>
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebar = document.getElementById('sidebar');
+        if (sidebarToggle && sidebar) {
+            sidebarToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('show');
+            });
+        }
+        // Manual desktop toggle hook since IDs must be unique
+        const dt = document.getElementById('theme-toggle-desktop');
+        if (dt) {
+            dt.addEventListener('click', () => {
+                const t = document.getElementById('theme-toggle');
+                if (t) t.click();
+            });
+        }
+    </script>
+</body>
+
+</html>

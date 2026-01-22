@@ -1,0 +1,339 @@
+/* 
+ * UI/UX Agency Website - Main Stylesheet
+ * Version: 1.0
+ * Author: Antigravity
+ */
+
+/* =========================================
+   1. CSS Variables & Theme Setup
+   ========================================= */
+:root {
+    /* Brand Colors - HSL for easy manipulation */
+    --primary-hue: 250;
+    /* Deep Purple */
+    --secondary-hue: 15;
+    /* Vibrant Orange/Coral */
+    --color-primary: hsl(var(--primary-hue), 80%, 60%);
+    --color-primary-dark: hsl(var(--primary-hue), 80%, 45%);
+    --color-secondary: hsl(var(--secondary-hue), 90%, 60%);
+
+    /* Neutral Colors - Light Mode */
+    --color-bg: #ffffff;
+    --color-bg-subtle: #f8f9fa;
+    --color-text: #2c3e50;
+    --color-text-muted: #6c757d;
+    --color-border: #e9ecef;
+
+    /* Typography */
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 6px 15px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 15px 30px rgba(0, 0, 0, 0.1);
+
+    /* Spacing */
+    --section-padding: 80px;
+    --border-radius: 12px;
+}
+
+[data-theme="dark"] {
+    /* Neutral Colors - Dark Mode */
+    --color-bg: #121212;
+    --color-bg-subtle: #1e1e2e;
+    --color-text: #e9ecef;
+    --color-text-muted: #adb5bd;
+    --color-border: #2d2d3b;
+
+    --shadow-md: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* =========================================
+   2. Base Styles
+   ========================================= */
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+/* Utility */
+.text-primary {
+    color: var(--color-primary) !important;
+}
+
+.bg-primary {
+    background-color: var(--color-primary) !important;
+}
+
+.object-fit-cover {
+    object-fit: cover !important;
+}
+
+/* =========================================
+   3. Components
+   ========================================= */
+
+/* Navbar */
+.navbar {
+    padding: 1.5rem 0;
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.9);
+    /* Glassmorphism light */
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme="dark"] .navbar.scrolled {
+    background: rgba(18, 18, 18, 0.9);
+    /* Glassmorphism dark */
+}
+
+.nav-link {
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--color-primary);
+}
+
+/* Buttons */
+.btn-custom,
+.btn {
+    padding: 10px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    /* Enforce consistency */
+}
+
+.btn-sm {
+    padding: 8px 20px;
+    min-height: 40px;
+    font-size: 0.875rem;
+}
+
+.btn-lg {
+    padding: 14px 36px;
+    min-height: 58px;
+    font-size: 1.125rem;
+}
+
+.btn-square {
+    padding: 0 !important;
+    width: 50px;
+    height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    /* Soft square */
+}
+
+.btn-square.btn-sm {
+    width: 40px;
+    height: 40px;
+    min-height: 40px;
+    border-radius: 8px;
+}
+
+.btn-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary-custom {
+    background: var(--color-primary);
+    color: white;
+    border: 2px solid var(--color-primary);
+    /* Add border to match outline height perfectly if needed, or keeping standard */
+}
+
+.btn-primary-custom:hover {
+    background: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+    color: white;
+}
+
+.btn-outline-custom {
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+    /* Ensure text is primary color */
+    background: transparent;
+}
+
+.btn-outline-custom:hover {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+}
+
+/* Hero Section */
+.hero-section {
+    padding: 120px 0 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 24px;
+}
+
+/* Cards */
+.feature-card {
+    background: var(--color-bg-subtle);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    transition: transform 0.3s ease;
+    border: 1px solid var(--color-border);
+    height: 100%;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--color-primary);
+}
+
+/* Footer */
+.footer {
+    background-color: var(--color-bg-subtle);
+    padding: 60px 0 20px;
+    margin-top: 100px;
+}
+
+/* =========================================
+   4. Responsive & Breakpoints
+   ========================================= */
+
+/* Range: 250px to 450px (Small Mobile) */
+@media (min-width: 250px) and (max-width: 450px) {
+    body {
+        font-size: 14px;
+        /* Slightly smaller text for very small screens */
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+        /* Prevent overflow */
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+/* Range: 450px to 850px (Large Mobile / Tablet) */
+@media (min-width: 451px) and (max-width: 850px) {
+    .hero-title {
+        font-size: 2.8rem;
+    }
+
+    .feature-card {
+        padding: 30px;
+        /* Adjust padding for mid-size */
+    }
+}
+
+/* Range: 850px to 1050px (Small Laptop / Tablet Landscape) */
+@media (min-width: 851px) and (max-width: 1050px) {
+    .navbar-nav .nav-link {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        font-size: 0.95rem;
+        /* Tighten nav items slightly */
+    }
+
+    .hero-section {
+        padding: 100px 0 60px;
+    }
+}
+
+/* General Mobile Navbar Tweaks */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        background: var(--color-bg);
+        padding: 20px;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-lg);
+        margin-top: 15px;
+        border: 1px solid var(--color-border);
+    }
+
+    .navbar-nav .nav-link {
+        padding: 10px 0;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .navbar-nav .nav-link:last-child {
+        border-bottom: none;
+    }
+
+    .d-flex.align-items-center.gap-3 {
+        margin-top: 15px;
+        flex-direction: column-reverse;
+        align-items: stretch !important;
+    }
+
+    .theme-toggle-btn {
+        align-self: flex-end;
+        margin-bottom: -40px;
+        z-index: 10;
+    }
+}
+
+/* Theme Toggle Button */
+.theme-toggle-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+    background: var(--color-bg-subtle);
+    color: var(--color-primary);
+    transform: rotate(15deg);
+    border-color: var(--color-primary);
+}
