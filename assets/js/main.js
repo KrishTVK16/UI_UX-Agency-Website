@@ -6,6 +6,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     initNavbarScroll();
+    // Initialize AOS
+    AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true,
+        offset: 100
+    });
 });
 
 /* =========================================
@@ -19,9 +26,9 @@ function initTheme() {
     // Check local storage or system preference
     const savedTheme = localStorage.getItem('theme');
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
+
     let currentTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
-    
+
     // Apply initial theme
     applyTheme(currentTheme);
 
@@ -35,7 +42,7 @@ function initTheme() {
     function applyTheme(theme) {
         htmlEl.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
-        
+
         // Update icon if exists (Bootstrap Icons classes)
         if (iconEl) {
             if (theme === 'dark') {
@@ -54,7 +61,7 @@ function initTheme() {
    ========================================= */
 function initNavbarScroll() {
     const navbar = document.querySelector('.navbar');
-    
+
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
