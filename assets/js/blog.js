@@ -115,22 +115,26 @@ function renderPosts(page) {
 
     paginatedPosts.forEach(post => {
         const article = document.createElement('article');
-        article.className = 'card border-0 shadow-sm mb-4 overflow-hidden';
+        article.className = 'col-12 mb-5';
         article.innerHTML = `
-            <div class="row g-0 align-items-stretch">
-                <div class="col-md-5">
-                    <img src="${post.image}" class="img-fluid h-100 w-100 object-fit-cover" 
-                         style="min-height: 240px;" alt="${post.title}">
-                </div>
-                <div class="col-md-7">
-                    <div class="card-body p-4 h-100 d-flex flex-column justify-content-center">
-                        <div class="mb-2">
-                            <span class="badge ${post.categoryClass}">${post.category}</span>
-                            <small class="text-muted ms-2">${post.date}</small>
+            <div class="card border-0 shadow-sm overflow-hidden h-100">
+                <div class="row g-0 align-items-stretch">
+                    <div class="col-md-5 col-lg-4">
+                        <img src="${post.image}" class="img-fluid h-100 w-100 object-fit-cover" 
+                             style="min-height: 300px;" alt="${post.title}">
+                    </div>
+                    <div class="col-md-7 col-lg-8">
+                        <div class="card-body p-4 p-lg-5 h-100 d-flex flex-column justify-content-center">
+                            <div class="mb-3">
+                                <span class="badge ${post.categoryClass}">${post.category}</span>
+                                <small class="text-muted ms-2">${post.date}</small>
+                            </div>
+                            <h3 class="card-title fw-bold mb-3 display-6 fs-3"><a href="${post.link}" class="text-decoration-none text-body">${post.title}</a></h3>
+                            <p class="card-text text-muted mb-4 lead fs-6">${post.excerpt}</p>
+                            <a href="${post.link}" class="fw-bold text-primary text-decoration-none align-self-start">
+                                Read More <i class="bi bi-arrow-right ms-1"></i>
+                            </a>
                         </div>
-                        <h3 class="card-title fw-bold mb-3 fs-4"><a href="${post.link}" class="text-decoration-none text-body">${post.title}</a></h3>
-                        <p class="card-text text-muted mb-3 flex-grow-1">${post.excerpt}</p>
-                        <a href="${post.link}" class="fw-bold text-primary text-decoration-none">Read More <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
